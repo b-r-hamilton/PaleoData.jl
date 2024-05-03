@@ -1,0 +1,56 @@
+module PaleoData
+using DataFrames, XLSX, Downloads, DrWatson, ExcelFiles, CSV, Revise, ZipFile, NCDatasets, DelimitedFiles
+
+
+"""
+function unzip(file,exdir="")
+
+credit to: https://discourse.julialang.org/t/how-to-extract-a-file-in-a-zip-archive-without-using-os-specific-tools/34585/5
+"""
+function unzip(file,exdir="")
+    fileFullPath = isabspath(file) ?  file : joinpath(pwd(),file)
+    basePath = dirname(fileFullPath)
+    outPath = (exdir == "" ? basePath : (isabspath(exdir) ? exdir : joinpath(pwd(),exdir)))
+    isdir(outPath) ? "" : mkdir(outPath)
+    zarchive = ZipFile.Reader(fileFullPath)
+    for f in zarchive.files
+        fullFilePath = joinpath(outPath,f.name)
+        if (endswith(f.name,"/") || endswith(f.name,"\\"))
+            mkdir(fullFilePath)
+        else
+            write(fullFilePath, read(f))
+        end
+    end
+    close(zarchive)
+end
+
+function download(url::String, filename::String)
+    url = joinpath(baseurl, file)
+    !isdir(dtadir()) && mkpath(datadir())
+    filename = datadir(file)
+    !isfile(filename) && Downloads.download(url, filename)
+end
+
+
+"""
+    function read_data_Osman2021()
+
+    Read proxy data archive from NCEI and Osman et al. 2021
+
+# Arguments
+- file: file in tree at baseurl, good files are 
+        LGMR_SST_climo.nc
+        LGMR_SAT_climo.nc
+        full ensembles (e.g. LGMR_SAT_ens.nc) will take a long time (3GB download)
+# Output
+- `df::DataFrame`: tabular data from Excel spreadsheet
+# BRYNN STOLE THIS FROM JAKE in DEGLACIAL_POWERLAW #
+(and slightly modded it) 
+"""
+function loadOsman(filename::String)
+    ds = Dataset(filename)
+    return ds 
+end
+
+
+    

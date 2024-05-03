@@ -1,0 +1,5 @@
+using PaleoData, Test
+
+@testset "PaleoData.jl" begin
+    osman = loadOsman("LGMR_SST_climo.nc")
+end
