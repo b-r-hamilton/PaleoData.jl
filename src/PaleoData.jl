@@ -1,7 +1,10 @@
 module PaleoData
-using DataFrames, XLSX, Downloads, ExcelFiles, CSV, Revise, ZipFile, NCDatasets, DelimitedFiles, GZip
-export loadOsman2021, loadThornalley2018, loadOcean2k, loadLMR, loadHadISST
-
+using DataFrames, XLSX, Downloads, CSV, Revise, ZipFile, NCDatasets, DelimitedFiles, GZip
+#load data functions 
+export loadOsman2021, loadThornalley2018, loadOcean2k, loadLMR, loadHadISST,
+    loadOcean2kBinned, loadSteinhilber2009, loadGao2008, loadEPICA800kCO2, loadLund2015
+#some helper functions 
+export makeNaN, splitfixedwidth, ptobserve
 
 projectdir() = dirname(dirname(pathof(PaleoData)))
 projectdir(s::String) = joinpath(projectdir(), s)
@@ -16,9 +19,6 @@ function datadir(s=nothing)
     end
     
 end
-
-println(datadir())
-#datadir() = cd("../data")
 
 """
 function unzip(file,exdir="")
@@ -55,8 +55,8 @@ end
 """
 function download(url::String, filename::String)
 """
-function download(url::String, file::String)
-    url = joinpath(url, file)
+function download(url::String, file::String; join = true)
+    url = join ? joinpath(url, file) : url 
     !isdir(datadir()) && mkpath(datadir())
     filename = datadir(file)
     !isfile(filename) && Downloads.download(url, filename)
@@ -64,8 +64,16 @@ function download(url::String, file::String)
     if split[2] == ".gz" && !isfile(split[1])
         println("unzipping a .gz file") 
         return gzip(filename)
-    else
+        rm(filename) 
+    elseif split[2] == ".zip" && !isdir(split[1])
+        println("unzipping")
+        unzip(filename)
+        rm(filename)
         return split[1]
+    elseif split[2] ∈ [".gz", ".zip"]
+        return split[1]
+    else
+        return filename
     end
     
 end
@@ -130,6 +138,17 @@ function loadOcean2k()
     return DataFrame(hcat(names, lats, lons, depths), ["name", "lat", "lon", "depth"]), DataFrame(data[2:end, :], data[1, :])
 end
 
+function loadOcean2kBinned()
+    url = "https://www.ncei.noaa.gov/pub/data/paleo/pages2k/"
+    filename = "Ocean2kLR2015.zip"
+    filename = download(url, filename) #should automatically unzip
+    path1 = joinpath(filename, "composites_shipped/binnm_nm.csv")
+    path2 = joinpath(filename, "composites_shipped/binnNm.csv")
+    path3 = joinpath(filename, "composites_shipped/stimem.csv") 
+    return readdlm(path1), readdlm(path2), readdlm(path3) 
+end
+
+
 function loadLMR(varname::String)
     println("big file, slow download (a couple minutes?)")
     url = "https://www.ncei.noaa.gov/pub/data/paleo/reconstructions/tardif2019lmr/v2_0/"
@@ -140,15 +159,88 @@ function loadLMR(varname::String)
 end
 
 function loadHadISST()
-    println("big file, slow download (a couple minutes?)")
-    url = "https://www.metoffice.gov.uk/hadobs/hadisst/data"
-    filename = "HadISST_sst.nc.gz"
+    url = "https://www.metoffice.gov.uk/hadobs/hadsst4/data/netcdf/"
+    filename = "HadSST.4.0.1.0_median.nc"
     filename = download(url, filename)
     nc = NCDataset(filename)
     return nc
 end
 
+function loadSteinhilber2009()
+    url = "https://www.ncei.noaa.gov/pub/data/paleo/climate_forcing/solar_variability"
+    filename = "steinhilber2009tsi.txt"
+    filename = download(url, filename)
+    #df = CSV.read(filename, DataFrame, header = 109)
+    dlm = readdlm(filename)
+    mat = convert(Matrix{Float64}, dlm[85:end, begin:3])
+    names = dlm[84, begin:3]
+    return DataFrame(mat, names)
+end
 
+function loadGao2008()
+    url = "https://climate.envsci.rutgers.edu/IVI2/"
+    filename = "IVI2TotalInjection_501-2000Version2.txt"
+    filename = download(url, filename)
+    dlm = readdlm(filename)
+    mat = convert(Matrix{Float64}, dlm[10:end, begin:4])
+    names = dlm[9, begin:4]
+    return DataFrame(mat, names) 
+end
+
+function loadEPICA800kCO2()
+    url = "https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/epica_domec/"
+    filename = "edc-monnin-co2-2008-noaa.txt"
+    filename = download(url, filename)
+    dlm = readdlm(filename)
+    mat = convert(Matrix{Float64}, dlm[279:end, 1:4])
+    names = dlm[278, 1:4]
+    return DataFrame(mat, names) 
+end
+
+function loadLund2015()
+    url = "https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/lund2015/"
+    ggccores = "ggc" .* string.([14,22,30,33,36,63,78,90,125])
+    jpccores = "jpc" .* string.([17,20,42])
+    cores = Symbol.(vcat(ggccores, jpccores))
+    filenames = NamedTuple{Tuple(cores)}("lund2015" .* string.(cores) .* ".txt")
+
+    #each .txt file gives "northernmost lat, southernmost lat", but they are the same
+    locs = Vector{Tuple}(undef, length(cores))
+    
+    for (i, c) in enumerate(cores)
+        filename = PaleoData.download(url, filenames[c])
+        dlm = readdlm(filename, skipstart = 59)
+        lat = dlm[1, 4]
+        lon = dlm[3,4]
+        depth = -dlm[5,3]
+        locs[i] = (lat, lon, depth)
+    end
+    return NamedTuple{Tuple(cores)}(locs) 
+    
+end
+
+
+function makeNaN(x::Array{Union{Missing, T}}) where T 
+    x[ismissing.(x)] .= NaN
+    return convert(Array{T}, x) 
+end
+
+"""
+I wrote this, and its lovely, but try readdlm first... 
+"""
+function splitfixedwidth(str::String)
+    notspace = findall(x->x != ' ', str)
+    continuous = diff(notspace)
+    breakpoints = vcat(0, findall(x->x!=1, continuous))
+    indices = [notspace[breakpoints[i]+1:breakpoints[i+1]] for i in 1:length(breakpoints)-1]
+    return [parse(Float64, str[i]) for i in indices]
+end
+
+function ptobserve(fld::Array{T, N}, lon, lat, lonpt, latpt) where {T, N}
+    lon_ind = findmin(abs.(lon .- lonpt))[2]
+    lat_ind = findmin(abs.(lat .- latpt))[2]
+    return fld[lon_ind, lat_ind, :]
+end
 
 end
     
