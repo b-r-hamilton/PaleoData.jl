@@ -1,5 +1,4 @@
-import Pkg; Pkg.activate("../")
-using PaleoData, Test, Revise
+using PaleoData, Test
 
 @testset "PaleoData.jl" begin
     osman = loadOsman2021("LGMR_SST_climo.nc")
