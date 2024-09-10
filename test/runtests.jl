@@ -6,5 +6,9 @@ using PaleoData, Test
     oc2k = loadOcean2k()
     lmr = loadLMR("sst")
     hadisst = loadHadISST()
+    steinhilber = loadSteinhilber2009()
+    gao = loadGao2008()
+    epica = loadEPICA800kCO2()
+    lund2015 = loadLund2015() 
 end
 

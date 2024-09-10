@@ -80,7 +80,7 @@ end
 
 
 """
-    function read_data_Osman2021()
+    function loadOsman2021()
 
     Read proxy data archive from NCEI and Osman et al. 2021
 
@@ -101,6 +101,11 @@ function loadOsman2021(filename::String)
     return ds 
 end
 
+"""
+function loadThornalley2018()
+
+Loads in sortable silt records from KNR-178-48JPC, KNR-178-56JPC
+"""
 function loadThornalley2018()
     filename = "41586_2018_7_MOESM2_ESM.xlsx"
     url = "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-018-0007-4/MediaObjects"
@@ -123,6 +128,11 @@ function loadThornalley2018()
     return Dict(zip(names, [df1,df2])) 
 end
 
+"""
+function loadOcean2k()
+
+Loads in names and locations of Ocean2k cores 
+"""
 function loadOcean2k()
     url = "https://www.ncei.noaa.gov/pub/data/paleo/pages2k"
     filename = "Ocean2kLR2015sst.xlsx"
@@ -138,6 +148,11 @@ function loadOcean2k()
     return DataFrame(hcat(names, lats, lons, depths), ["name", "lat", "lon", "depth"]), DataFrame(data[2:end, :], data[1, :])
 end
 
+"""
+function loadOcean2kBinned()
+
+load in the binned stdev, binned SST values, and binned ages 
+"""
 function loadOcean2kBinned()
     url = "https://www.ncei.noaa.gov/pub/data/paleo/pages2k/"
     filename = "Ocean2kLR2015.zip"
@@ -149,6 +164,11 @@ function loadOcean2kBinned()
 end
 
 
+"""
+function loadLMR(varname::String)
+
+load in LMR ensemble mean 
+"""
 function loadLMR(varname::String)
     println("big file, slow download (a couple minutes?)")
     url = "https://www.ncei.noaa.gov/pub/data/paleo/reconstructions/tardif2019lmr/v2_0/"
@@ -158,6 +178,11 @@ function loadLMR(varname::String)
     return nc 
 end
 
+"""
+function loadHadISST()
+
+load in HadISST dataset 
+"""
 function loadHadISST()
     url = "https://www.metoffice.gov.uk/hadobs/hadsst4/data/netcdf/"
     filename = "HadSST.4.0.1.0_median.nc"
@@ -166,6 +191,11 @@ function loadHadISST()
     return nc
 end
 
+"""
+function loadSteinhilber2009()
+
+load Steinhilber total solar insolation CE dataset 
+"""
 function loadSteinhilber2009()
     url = "https://www.ncei.noaa.gov/pub/data/paleo/climate_forcing/solar_variability"
     filename = "steinhilber2009tsi.txt"
@@ -177,6 +207,11 @@ function loadSteinhilber2009()
     return DataFrame(mat, names)
 end
 
+"""
+function loadGao2008()
+
+load Gao total stratospheric sulfate injection CE dataset
+"""
 function loadGao2008()
     url = "https://climate.envsci.rutgers.edu/IVI2/"
     filename = "IVI2TotalInjection_501-2000Version2.txt"
@@ -187,6 +222,11 @@ function loadGao2008()
     return DataFrame(mat, names) 
 end
 
+"""
+function loadEPICA800kCO2()
+
+load EPICA CO2 record 
+"""
 function loadEPICA800kCO2()
     url = "https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/epica_domec/"
     filename = "edc-monnin-co2-2008-noaa.txt"
