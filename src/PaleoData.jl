@@ -2,7 +2,7 @@ module PaleoData
 using DataFrames, XLSX, Downloads, CSV, Revise, ZipFile, NCDatasets, DelimitedFiles, GZip
 #load data functions 
 export loadOsman2021, loadThornalley2018, loadOcean2k, loadLMR, loadHadISST,
-    loadOcean2kBinned, loadSteinhilber2009, loadGao2008, loadEPICA800kCO2, loadLund2015
+    loadOcean2kBinned, loadSteinhilber2009, loadGao2008, loadEPICA800kCO2, loadLund2015, loadRickabyandElderfield2005, loadZhao2018
 #some helper functions 
 export makeNaN, splitfixedwidth, ptobserve
 
@@ -246,7 +246,7 @@ function loadLund2015()
 
     #each .txt file gives "northernmost lat, southernmost lat", but they are the same
     locs = Vector{Tuple}(undef, length(cores))
-    
+    d = Vector{NamedTuple}(undef, length(cores))
     for (i, c) in enumerate(cores)
         filename = PaleoData.download(url, filenames[c])
         dlm = readdlm(filename, skipstart = 59)
@@ -254,11 +254,49 @@ function loadLund2015()
         lon = dlm[3,4]
         depth = -dlm[5,3]
         locs[i] = (lat, lon, depth)
+
+        #find where data starts
+        sind = findall(x->x==1, dlm[:,1] .== "depth_cm")[1]
+        depth = dlm[sind+1:end, 1]
+        ind1 = findall(x->x==1, dlm[sind, :] .== "age_calkaBP")[1]
+        age_calkaBP = dlm[sind+1:end,ind1]
+        ind2 = findall(x->x==1, dlm[sind, :] .== "d13Cc.wuell>250")[1]
+        d13Ccwuell250 = dlm[sind+1:end,ind2]
+        d13Ccwuell250std = dlm[sind+1:end,ind2+1]
+        d13Ccwuell250ste = dlm[sind+1:end,ind2+2]
+        ind3 = findall(x->x==1, dlm[sind, :] .== "d18Oc.wuell>250")[1]
+        d18Ocwuell250 = dlm[sind+1:end, ind3]
+        d18Ocwuell250std = dlm[sind+1:end, ind3+1]
+        d18Ocwuell250ste = dlm[sind+1:end, ind3+2]
+        numanal = dlm[sind+1:end, 9]
+        data = NamedTuple{Tuple(Symbol.(["depth", "age_calkaBP", "d13Ccwuell250", "d13Ccwuell250std", "d13Ccwuell250ste", "d18Ocwuell250", "d18Ocwuell250std", "d18Ocwuell250ste", "numanal"]))}([depth, age_calkaBP, d13Ccwuell250, d13Ccwuell250std, d13Ccwuell250ste, d18Ocwuell250, d18Ocwuell250std, d18Ocwuell250ste, numanal])
+        d[i] = data
+
     end
-    return NamedTuple{Tuple(cores)}(locs) 
+    return NamedTuple{Tuple(cores)}(locs), NamedTuple{Tuple(cores)}(d)
     
 end
 
+
+function loadRickabyandElderfield2005()
+    filename = "Rickaby-Elderfield_2005.tab"
+    #PaleoData.download("https://doi.pangaea.de/10.1594/PANGAEA.832162?format=textfile", filename)
+    dlm = readdlm(datadir(filename),'\t', skipstart = 17)
+    age = dlm[:, 2]
+    d13C = dlm[:,3]
+    d18O = dlm[:,4]
+    CdCa = dlm[:, 5]
+    return NamedTuple{Tuple([:age, :d13c, :d18o, :CdCa])}([age, d13C, d18O, CdCa])
+end
+function loadZhao2018()
+    url = "https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/zhao2017"
+    filename = "zhao2017-c14.txt"
+    filename = download(url, filename)
+    dlm = readdlm(filename, '\t', skipstart = 110)
+    names = dlm[1, :]
+    mat = dlm[2:end, :]
+    return DataFrame(mat, names)
+end
 
 function makeNaN(x::Array{Union{Missing, T}}) where T 
     x[ismissing.(x)] .= NaN
