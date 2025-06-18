@@ -2,7 +2,7 @@ module PaleoData
 using DataFrames, XLSX, Downloads, CSV, Revise, ZipFile, NCDatasets, DelimitedFiles, GZip
 #load data functions 
 export loadOsman2021, loadThornalley2018, loadOcean2k, loadLMR, loadHadISST,
-    loadOcean2kBinned, loadSteinhilber2009, loadGao2008, loadEPICA800kCO2, loadLund2015, loadRickabyandElderfield2005, loadZhao2018
+    loadOcean2kBinned, loadSteinhilber2009, loadGao2008, loadEPICA800kCO2, loadLund2015, loadRickabyandElderfield2005, loadZhao2018, loadLisiecki2016, loadIntCal20, loadGraven2017
 #some helper functions 
 export makeNaN, splitfixedwidth, ptobserve
 
@@ -297,6 +297,50 @@ function loadZhao2018()
     mat = dlm[2:end, :]
     return DataFrame(mat, names)
 end
+
+function loadLisiecki2016()
+    #doesn't work firewall. download manually and move to data folder 
+    url = "https://agupubs.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2F2016PA003002&file=palo20372-sup-0005-ds03.xlsx"
+    filename = "palo20372-sup-0005-ds03.xlsx"
+    filename = download(url, filename, join = false)
+    xf = XLSX.readxlsx(filename)
+    sheetname = XLSX.sheetnames(xf)[begin]
+    xf1 = xf[sheetname * "!A7:J308"]
+    names = xf1[1, :]
+    data = xf1[2:end, :]
+    data[data .== "NaN"] .= NaN
+    return DataFrame(convert(Matrix{Float64}, data), names) 
+end
+
+function loadIntCal20()
+    url = "https://intcal.org/curves"
+    filename1 = "intcal20.14c"
+    filename2 = "shcal20.14c"
+    filename1 = download(url, filename1)
+    filename2 = download(url, filename2)
+    function readintcalfile(filename) 
+        mat, header = readdlm(filename, ',', skipstart = 10, header = true)
+        header = vec(header)
+        #because header names are not unique
+        header[3] = header[3] * " 14 C age"
+        header[5] = header[3] * " Delta 14C"
+        return DataFrame(mat, vec(header))
+    end
+    return readintcalfile(filename1), readintcalfile(filename2) 
+end
+
+function loadGraven2017()
+    #will not download, need to manually import
+    #=
+    url = "https://gmd.copernicus.org/articles/10/4405/2017/gmd-10-4405-2017-supplement.zip"
+    filename = "gmd-10-4405-2017-supplement.zip"
+    filename = download(url, filename) 
+    =#
+    filename = datadir("gmd-10-4405-2017-supplement/TableS1.csv")
+    data, head = readdlm(filename,',', skipstart = 3, header = true)
+    return DataFrame(convert(Matrix{Float64}, data[2:end, :]), vec(head))
+end
+
 
 function makeNaN(x::Array{Union{Missing, T}}) where T 
     x[ismissing.(x)] .= NaN
