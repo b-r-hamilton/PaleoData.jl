@@ -1,0 +1,267 @@
+﻿# Brazil Margin Deglacial Benthic Stable Isotope Data 
+#----------------------------------------------------------------------- 
+#                World Data Service for Paleoclimatology, Boulder 
+#                                  and 
+#                     NOAA Paleoclimatology Program 
+#             National Centers for Environmental Information (NCEI)
+#----------------------------------------------------------------------- 
+# 
+# NOTE: Please cite Publication, and Online_Resource and date accessed when using these data. 
+# If there is no publication information, please cite Investigators, Title, and Online_Resource and date accessed. 
+#
+# Online_Resource: https://www.ncdc.noaa.gov/paleo/study/19521 
+# Online_Resource: http://www1.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/lund2015/lund2015ggc36.txt
+#
+# Original_Source_URL: 
+# 
+# Description/Documentation lines begin with #
+# Data lines have no #
+#
+# Archive: Paleoceanography
+#
+# Parameter_Keywords: oxygen isotopes, carbon isotopes
+#--------------------
+# Contribution_Date
+#	Date: 2015-11-05
+#--------------------
+# Title
+#	Study_Name: Brazil Margin Deglacial Benthic Stable Isotope Data 
+#--------------------
+# Investigators
+# 	Investigators: Lund, D.C.; Tessin, A.C.; Hoffman, J.L.; Schmittner, A.
+#--------------------
+# Description_and_Notes
+#	Description: Benthic foraminiferal (Cibicidoides wuellerstorfi) stable isotope (d18O and d13C) data from 
+#	marine sediment cores collected on the Brazil Margin, Northeast Atlantic Ocean, for the deglacial interval.
+#--------------------
+# Publication 
+#	Authors: D.C. Lund, A.C. Tessin, J.L. Hoffman, A. Schmittner
+#	Published_Date_or_Year: 2015-05-06
+#	Published_Title: Southwest Atlantic water mass evolution during the last deglaciation
+#	Journal_Name: Paleoceanography
+#	Volume: 30
+#	Edition: 
+#	Issue: 5
+#	Pages: 477-494
+#	Report_Number: 
+#	DOI: 10.1002/2014PA002657
+#	Online_Resource: http://onlinelibrary.wiley.com/doi/10.1002/2014PA002657/full
+#	Full_Citation: 
+#	Abstract: The rise in atmospheric CO2 during Heinrich Stadial 1 (HS1; 14.5-17.5 kyr B.P.) may have been driven by the release of carbon from the abyssal ocean. Model simulations suggest that wind-driven upwelling in the Southern Ocean can liberate 13C-depleted carbon from the abyss, causing atmospheric CO2 to increase and the d13C of CO2 to decrease. One prediction of the Southern Ocean hypothesis is that water mass tracers in the deep South Atlantic should register a circulation response early in the deglaciation. Here we test this idea using a depth transect of 12 cores from the Brazil Margin. We show that records below 2300 m remained 13C-depleted until 15 kyr B.P. or later, indicating that the abyssal South Atlantic was an unlikely source of light carbon to the atmosphere during HS1. Benthic d18O results are consistent with abyssal South Atlantic isolation until 15 kyr B.P., in contrast to shallower sites. The depth dependent timing of the d18O signal suggests that correcting d18O for ice volume is problematic on glacial terminations. New data from 2700 to 3000 m show that the deep SW Atlantic was isotopically distinct from the abyss during HS1. As a result, we find that mid-depth d13C minima were most likely driven by an abrupt drop in d13C of northern component water. Low d13C at the Brazil Margin also coincided with an ~80 per mil decrease in D14C. Our results are consistent with a weakening of the Atlantic meridional overturning circulation and point toward a northern hemisphere trigger for the initial rise in atmospheric CO2 during HS1.
+#------------------
+# Funding_Agency 
+#	Funding_Agency_Name: US National Science Foundation
+#	Grant: OCE-1003500, Graduate Research Fellowship Program
+#------------------
+# Site_Information 
+#	Site_Name: KNR159-5-36GGC
+#	Location: Ocean>Atlantic Ocean>North Atlantic Ocean
+#	Country:  
+#	Northmost Latitude: -27.27
+# 	Southmost Latitude: -27.27
+# 	Eastmost Longitude: -46.47
+# 	Westmost Longitude: -46.47
+# 	Elevation: -1268 m
+#------------------
+# Data_Collection   
+#	Collection_Name: Lund2015GGC36
+#	Earliest_Year: 33816
+#	Most_Recent_Year: 288
+#	Time_Unit: Cal. Year BP
+#	Core_Length: m
+#	Notes: 
+#------------------
+# Chronology_Information
+#	Chronology: 
+# 	Table 2. Planktonic Radiocarbon Results for Cores Presented in This Paper *a
+#
+# Core	Depth (cm)	14C age (years)	Error (years)	Calendar Age (yr B.P.)	Error (years)	Notes	University of California-Irvine Accelerator Mass Spectrometry (UCIAMS) No.
+# 
+# KNR159-5-14GGC	
+#	3	1,605	15	1,138	203	 	94943
+#  	25	3,185	15	2,990	236	 	94944
+#  	57	5,965	20	6,404	221	 	94945
+#  	73	7,170	20	7,651	186	 	94946
+#  	89	9,210	20	9,955	262	 	94947
+#  	97	11,575	40	13,045	202	 	94948
+#  	114	14,160	40	16,630	307	 	94950
+#  	122	13,815	40	16,125	297	 	94951
+#  	118	13,987.5	40	16,378	427	average	n/a
+#  	170	16,060	230	18,939	344	 	94952
+# 
+# KNR159-5-90GGC	
+#	30.5	4,790	20	5,064	248	 	92724
+#  	40.5	6,065	20	6,497	219	 	92725
+#  	50.5	8,000	25	8,490	246	 	92726
+#  	60.5	10,640	25	12,005	385	 	92727
+#  	70.5	12,080	30	13,546	205	 	92728
+#  	80.5	11,620	25	13,087	201	 	92729
+#  	75.5	11,850	39	13,317	287	average	n/a
+#  	90.5	12,630	30	14,252	361	 	92730
+#  	100.5	13,500	75	15,668	316	 	OS-27754
+#  	104.5	12,180	30	13,635	211	reversal	92731
+# 	110.5	11,530	30	12,998	199	reversal	92732
+# 	120.5	11,210	30	12,736	206	reversal	92733
+#  	130.5	10,805	30	12,263	302	reversal	92734
+#  	140.5	9,395	25	10,227	272	reversal	92735
+#  	144.5	12,450	50	13,921	285	reversal	OS-34253
+#  	150.5	11,665	25	13,125	202	reversal	92736
+#  	200.5	16,700	95	19,689	281	 	OS-27755
+# 
+# KNR159-5-63GGC	
+#	6.5	3,145	15	2,964	237	 	109707
+#  	14	8,310	20	8,844	262	 	154411
+#  	18.5	11,590	40	13,060	202	 	142506
+#  	21.5	12,150	40	13,608	210	 	142507
+#  	24.5	11,580	100	13,047	217	reversal	109708
+#  	30.5	14,930	90	17,693	267	 	154412
+#  	35	15,840	140	18,677	259	 	154413
+#  	42.5	11,665	40	12,810	520	reversal	109709
+#  	48.5	17,610	60	20,758	273	 	142508
+#  	60.5	17,600	80	20,748	281	 	109710
+#  	54.5	17,605	100	20,753	391	average	n/a
+#  	78.5	19,890	260	23,454	395	 	109711
+#  	96.5	24,430	170	28,077	257	 	109712
+# 
+# KNR159-5-20JPC	
+#	5.5	2,935	20	2,670	254	 	92737
+#  	10.5	4,155	25	4,224	273	 	92738
+#  	25.5	7,515	25	7,974	205	 	92739
+#  	35.5	10,640	25	12,005	385	 	92740
+#  	45.5	9,385	30	10,215	275	reversal	92741
+#  	60.5	3,585	20	3,481	255	reversal	92742
+#  	70.5	9,180	70	9,926	269	reversal	92743
+#  	71.5	5,540	25	5,941	222	reversal	94722
+#  	80.5	10,840	320	12,171	518	reversal	92744
+# 	90.5	4,805	45	5,071	253	reversal	92745
+#  	95.5	4,245	35	4,345	280	reversal	92746
+#  	105.5	7,230	100	7,713	207	reversal	92747
+#  	115.5	12,780	170	14,520	440	reversal	92748
+#  	120.5	14,340	250	16,891	458	 	92749
+#  	135.5	16,270	370	19,175	471	 	92804
+#	145.5	13,600	300	15,798	415	reversal	92805
+#  	170.5	17,270	80	20,335	262	 	92806
+#  	174	17,740	160	20,933	343	 	94723
+# 
+#	*a In instances where nearby planktonic samples had calendar ages within ±1 standard deviation, 
+#	the samples were averaged to produce a mean age. All of the dates are based on G. ruber, and all 
+#	were run at UC Irvine with the exception of three samples for KNR159-5-90GGC, which were run at 
+#	Woods Hole Oceanographic Institution (WHOI) National Ocean Sciences Accelerator Mass Spectrometry 
+#	(100.5 cm, 144.5 cm, and 200.5 cm). These three dates were provided by Delia Oppo. n/a, not applicable.
+#
+# 
+# 
+# Benthic Radiocarbon Results for Core KNR-159-5-78GGC 
+# 
+# 
+# Depth(cm)	Planktonic 14C Age (yr)	Planktonic 14C Age Error (yr)	INTCAL13 Calendar Age (yr)	INTCAL13 Calendar Age Error (yr)	Benthic Fmod	Benthic Fmod (error)	Benthic 14C Age (yr)	Benthic 14C Age Error (yr)	UCIAMS# (benthic)		Benthic D14C (per mil)	Low Age (yr BP)	Low D14C (per mil)	High Age (yr BP)	High D14C (per mil)		Benthic DD14C (per mil)	High Age (yr BP)	Low DD14C (per mil)	Low Age (yr BP)	High DD14C (per mil)
+# 1	1235	15	799.5	185.5	0.7506	0.0029	2305	35	109736		-173	616	-192	986	-154		-162	986	-186	616	-138
+# 9	5810	15	6203	221	0.4587	0.0021	6260	40	109737		-28	5983	-55	6425	-2		-107	6425	-133	5983	-82
+# 13	7530	20	7987.5	204.5	0.3247	0.0025	9040	70	109738		-146	7786	-168	8193	-124		-224	8193	-248	7786	-199
+# 17	8800	25	9466.5	264.5	0.2694	0.0014	10535	45	109739		-152	9203	-180	9738	-125		-247	9738	-274	9203	-220
+# 25	10390	20	11525.5	320.5	0.2230	0.0010	12055	40	109740		-100	11210	-135	11852	-65		-262	11852	-281	11210	-242
+# 33	12475	35	13956	293	0.1911	0.0010	13295	45	109741		35	13666	-2	14252	72		-168	14252	-198	13666	-138
+# 37	12685	35	14341	367	0.1813	0.0009	13715	40	109742		29	13983	-16	14713	75		-194	14713	-218	13983	-171
+# 45	13435	40	15585	300	0.1647	0.0014	14490	70	109743		86	15292	46	15888	127		-217	15888	-244	15292	-190
+# 49	13785	35	16078.5	293.5	0.1598	0.0010	14730	60	109744		118	15782	78	16377	159		-206	16377	-236	15782	-176
+# 57	14105	45	16558	307	0.1525	0.0009	15105	50	109745		131	16248	88	16866	174		-214	16866	-242	16248	-186
+# 61	14065	30	16501.5	303.5	0.1536	0.0009	15050	50	109746		131	16199	89	16805	173		-211	16805	-238	16199	-183
+# 89	14960	60	17722.5	250.5	0.1401	0.0007	15790	45	109747		196	17473	159	17972	232		-198	17972	-230	17473	-166
+# 97	15040	70	17803.5	254.5	0.1392	0.0007	15840	40	109748		200	17553	163	18057	237		-196	18057	-229	17553	-163
+# 105	15360	50	18184.5	236.5	0.1397	0.0008	15810	50	109749		261	17946	224	18423	298		-141	18423	-174	17946	-108
+# 113	15725	40	18575	214	0.1316	0.0008	16295	50	109750		245	18361	212	18790	278		-161	18790	-195	18361	-127
+# 117	15720	60	18570.5	219.5	0.1278	0.0009	16520	60	109751		209	18355	176	18789	242		-198	18789	-231	18355	-164
+# 125	16160	60	19023.5	236.5	0.1220	0.0008	16900	60	109752		218	18784	182	19258	254		-185	19258	-220	18784	-151
+# 137	16700	70	19690	269	0.1168	0.0009	17250	70	109753		265	19420	222	19960	307		-155	19960	-191	19420	-119
+# 145	16460	40			0.1141	0.0008	17440	60	109754												
+# 153	16990	60	19998	268	0.1101	0.0010	17720	80	109755		237	19726	195	20264	279		-190	20264	-226	19726	-154
+# 165	16245	45			0.1119	0.0008	17590	60	109756												
+# 
+# 	
+#----------------	
+# Variables 
+#
+# Data variables follow are preceded by "##" in columns one and two.
+# Data line variables format:  Variables list, one per line, shortname-tab-longname-tab-longname components (9 components: what, material, error, units, seasonality, archive, detail, method, C or N for Character or Numeric data) 
+#
+## depth_cm	depth, , , cm, , , , ,N
+## age_calkaBP	age, , , calendar Kyears before present, , , , ,N
+## d13Cc.wuell>250	delta 13C, Cibicidoides wuellerstorfi >250 micron, , per mil VPDB, ,Paleoceanography, , ,N 
+## d18Oc.wuell>250	delta 18O, Cibicidoides wuellerstorfi >250 micron, , per mil VPDB, ,Paleoceanography, , ,N 
+## numanal	Number of Analyses, , , , , , , ,N
+#
+#----------------
+# Data:
+# Data lines follow (have no #)
+# Data line format - tab-delimited text, variable short name as header
+# Missing Values:  
+#
+depth_cm	age_calkaBP	d13Cc.wuell>250	d18Oc.wuell>250	numanal
+1	0.288	1.32	2.59	1
+4	0.789	1.03	2.46	1
+8	1.457	0.67	2.54	1
+12	2.125	1.06	2.45	1
+16	2.793	0.69	2.54	1
+20	3.461	1.13	2.46	1
+24	4.129	1.02	2.47	1
+28	4.797	1.08	2.44	1
+32	5.465	1.13	2.45	1
+36	6.133	0.7	2.57	1
+40	6.801	0.91	2.53	1
+44	7.371	1.02	2.65	1
+48	7.927	0.93	2.48	1
+52	8.438	1.05	2.68	1
+56	8.873	0.99	2.69	1
+60	9.731	0.95	2.88	1
+64	10.161	0.96	2.66	1
+68	11.657	1.05	2.72	1
+72	12.220	0.86	3.15	1
+80	12.902	0.93	2.84	1
+84	13.640	0.98	2.96	1
+88	14.152	0.87	3.28	1
+92	14.475	0.86	3.22	1
+96	14.757	0.77	3.49	1
+100	15.040	0.67	3.61	1
+104	15.322	0.73	3.57	1
+108	15.524	0.72	3.8	1
+112	15.701	0.86	3.72	1
+116	15.898	0.72	3.75	1
+120	15.964	0.6	3.86	1
+124	16.029	0.56	3.92	1
+128	16.196	0.76	3.98	1
+132	16.541	0.57	3.95	1
+136	17.028	0.44	3.93	1
+141	17.523	0.62	3.98	1
+144	17.820	0.41	4.16	1
+148	18.167	0.53	4.28	1
+152	18.449	0.64	4.14	1
+156	18.756	0.51	4.24	1
+160	19.063	0.53	4.14	1
+164	19.370	0.51	4.2	1
+168	19.677	0.65	4.22	1
+172	19.984	0.59	4.26	1
+176	20.291	0.56	4.17	1
+180	20.598	0.57	4.21	1
+184	21.473	0.5	3.91	1
+188	22.544	0.64	4.16	1
+192	23.080	0.69	4.11	1
+196	23.617	0.66	4.13	1
+200	24.154	0.37	3.97	1
+204	24.691	0.44	3.72	1
+208	25.228	0.38	4.03	1
+212	25.764	0.67	3.95	1
+216	26.301	0.78	3.83	1
+220	26.838	0.52	4.02	1
+224	27.375	0.39	3.83	1
+228	27.912	0.67	3.83	1
+232	28.448	0.6	3.99	1
+236	28.985	0.61	3.89	1
+240	29.522	0.68	3.92	1
+244	30.059	0.32	3.76	1
+248	30.596	0.47	3.74	1
+252	31.132	0.65	3.93	1
+256	31.669	0.69	3.77	1
+260	32.206	0.63	3.85	1
+264	32.743	0.67	3.53	1
+268	33.280	0.53	3.63	1
+272	33.816	0.68	3.64	1
